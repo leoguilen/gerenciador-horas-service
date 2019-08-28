@@ -13,7 +13,7 @@ module.exports = {
             const info = await promisify(doc.getInfo)();
             res.json(info);
         } catch (err) {
-            res.json("Falha ao tentar acessar o documento. Detalhes: " + err);
+            res.json("Falha ao tentar inserir dados no documento (Method: 'getDocAllInfo') . Detalhes: " + err);
         }
     },
     async getDimension(req,res){
@@ -24,7 +24,7 @@ module.exports = {
                 res.json({ "RowsCount":sheet.rowCount, "ColumnsCount":sheet.colCount });
             });
         } catch (err) {
-            res.json("Falha ao tentar acessar o documento. Detalhes: " + err);
+            res.json("Falha ao tentar inserir dados no documento (Method: 'getDimension') . Detalhes: " + err);
         }
     },
     async getModifyInfo(req,res){
@@ -34,7 +34,7 @@ module.exports = {
                 res.json({ "LastUpdate": info.updated, "AuthorName": info.author.name, "AuthorEmail": info.author.email });
             });
         } catch (err) {
-            res.json("Falha ao tentar acessar o documento. Detalhes: " + err);
+            res.json("Falha ao tentar inserir dados no documento (Method: 'getModifyInfo') . Detalhes: " + err);
         }
     },
 }
