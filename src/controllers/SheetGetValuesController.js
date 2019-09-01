@@ -6,50 +6,6 @@ require('dotenv/config');
 
 const doc = new GoogleSpreadsheet(process.env.SPREADSHEET_ID);
 
-function numberOfMonth(month) {
-    let numberMonth;
-
-    switch (month) {
-        case 'Janeiro':
-            numberMonth = 01;
-            break;
-        case 'Fevereiro':
-            numberMonth = 02;
-            break;
-        case 'Março':
-            numberMonth = 03;
-            break;
-        case 'Abril':
-            numberMonth = 04;
-            break;
-        case 'Maio':
-            numberMonth = 05;
-            break;
-        case 'Junho':
-            numberMonth = 06;
-            break;
-        case 'Julho':
-            numberMonth = 07;
-            break;
-        case 'Agosto':
-            numberMonth = 08;
-            break;
-        case 'Setembro':
-            numberMonth = 09;
-            break;
-        case 'Outubro':
-            numberMonth = 10;
-            break;
-        case 'Novembro':
-            numberMonth = 11;
-            break;
-        case 'Dezembro':
-            numberMonth = 12;
-            break;    
-    }
-    return numberMonth;
-}
-
 module.exports = {
     async getCell(req,res){
         try {
@@ -135,14 +91,15 @@ module.exports = {
                 "max-row": sheet.rowCount,
                 "return-empty": true
             }, (err,cells) => {
-                let row, col;
+                let row, col, batchId;
                 cells.forEach(cell => {
                     if(cell.value == dateFormated){
                         row = cell.row;
-                        col = cell.col;     
+                        col = cell.col; 
+                        batchId = cell.batchId;    
                     }
                 });
-                res.json({ "row": row, "col": col});
+                res.json({ "row": row, "col": col, "Id": batchId});
             });
 
         } catch (err) {

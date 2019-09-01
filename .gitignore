@@ -61,4 +61,4 @@ typings/
 .next
 
 #Credentials Google-Spreadsheet
-credentials.json
+/credentials.json
