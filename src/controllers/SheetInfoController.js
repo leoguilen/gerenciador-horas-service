@@ -10,8 +10,8 @@ module.exports = {
     async getDocAllInfo(req,res){
         try {
             await promisify(doc.useServiceAccountAuth)(credentials);
-            const info = await promisify(doc.getInfo)();
-            res.json(info);
+            const {id,title} = await promisify(doc.getInfo)();
+            res.json({"Id": id, "Title": title});
         } catch (err) {
             res.json("Falha ao tentar inserir dados no documento (Method: 'getDocAllInfo') . Detalhes: " + err);
         }

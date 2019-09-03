@@ -13,7 +13,8 @@ routes.get('/spreadsheet/info/modifyInfo', SheetInfoController.getModifyInfo);
 
 // Spreadsheet getting data
 routes.get('/spreadsheet/data/cells', SheetGetValuesController.getCells);
-routes.get('/spreadsheet/data/cell/:id', SheetGetValuesController.getCell);
+routes.get('/spreadsheet/data/cell/:date', SheetGetValuesController.getCell);
+routes.get('/spreadsheet/data/infoCell/:id', SheetGetValuesController.getInfosCell);
 routes.get('/spreadsheet/data/indexCell/:date',SheetGetValuesController.getIndexCell);
 
 // Spreadsheet inserting and updating data
