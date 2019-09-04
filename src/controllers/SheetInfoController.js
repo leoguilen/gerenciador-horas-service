@@ -10,21 +10,14 @@ module.exports = {
     async getDocAllInfo(req,res){
         try {
             await promisify(doc.useServiceAccountAuth)(credentials);
-            const {id,title} = await promisify(doc.getInfo)();
-            res.json({"Id": id, "Title": title});
-        } catch (err) {
-            res.json("Falha ao tentar inserir dados no documento (Method: 'getDocAllInfo') . Detalhes: " + err);
-        }
-    },
-    async getDimension(req,res){
-        try{
-            await promisify(doc.useServiceAccountAuth)(credentials);
             await promisify(doc.getInfo)((err,info) => {
                 sheet = info.worksheets[0];
-                res.json({ "RowsCount":sheet.rowCount, "ColumnsCount":sheet.colCount });
+                res.json({ "Id": info.id, "Title": info.title,
+                        "RowsCount":sheet.rowCount, 
+                        "ColumnsCount":sheet.colCount });
             });
         } catch (err) {
-            res.json("Falha ao tentar inserir dados no documento (Method: 'getDimension') . Detalhes: " + err);
+            res.json("Falha ao tentar inserir dados no documento (Method: 'getDocAllInfo') . Detalhes: " + err);
         }
     },
     async getModifyInfo(req,res){

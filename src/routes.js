@@ -6,9 +6,11 @@ const SheetGetValuesController = require('./controllers/SheetGetValuesController
 const SheetInsertValuesController = require('./controllers/SheetInsertValuesController');
 const SheetDeleteValuesController = require('./controllers/SheetDeleteValuesController');
 
+// Check Service Disponibitily
+routes.get('/checkService', (req,res) => res.sendStatus(res.statusCode));
+
 // Spreadsheet getting infos
 routes.get('/spreadsheet/info', SheetInfoController.getDocAllInfo);
-routes.get('/spreadsheet/info/dimension', SheetInfoController.getDimension);
 routes.get('/spreadsheet/info/modifyInfo', SheetInfoController.getModifyInfo);
 
 // Spreadsheet getting data

@@ -91,7 +91,6 @@ module.exports = {
             }
             
             res.json({
-                "title": result[0],
                 "mes": result[25],
                 "data_01" : {"data": result[33], "entrada": result[34], "saida_almoco": result[35], "entrada_almoco": result[36], "saida": result[37], "obs": result[38], "extra": result[39]  },
                 "data_02" : {"data": result[41], "entrada": result[42], "saida_almoco": result[43], "entrada_almoco": result[44], "saida": result[45], "obs": result[46], "extra": result[47]  },
