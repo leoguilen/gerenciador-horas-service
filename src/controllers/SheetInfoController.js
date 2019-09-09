@@ -12,7 +12,7 @@ module.exports = {
             await promisify(doc.useServiceAccountAuth)(credentials);
             await promisify(doc.getInfo)((err,info) => {
                 sheet = info.worksheets[0];
-                res.json({ "Id": info.id, "Title": info.title,
+                res.json({ "Title": info.title,
                         "RowsCount":sheet.rowCount, 
                         "ColumnsCount":sheet.colCount });
             });
