@@ -21,7 +21,7 @@ module.exports = {
                 res.json({ "row": cell.row,"column": cell.col,"value": cell.value, "id": cell.batchId });
             });
         } catch (err) {
-            res.json("Falha ao tentar inserir dados no documento (Method: 'getCell') . Detalhes: " + err);
+            res.json("Falha ao tentar ler dados do documento (Method: 'getCell') . Detalhes: " + err);
         }
     },
     async getCell(req,res){
@@ -75,7 +75,7 @@ module.exports = {
             });
 
         } catch (err) {
-            res.json("Falha ao tentar inserir dados no documento (Method: 'getIndexCell') . Detalhes: " + err);
+            res.json("Falha ao tentar ler dados do documento (Method: 'getIndexCell') . Detalhes: " + err);
         }
     },
     async getCells(req,res){
@@ -127,7 +127,7 @@ module.exports = {
             });
 
         } catch (err) {
-            res.json("Falha ao tentar inserir dados no documento (Method: 'getCells') . Detalhes: " + err);
+            res.json("Falha ao tentar ler dados do documento (Method: 'getCells') . Detalhes: " + err);
         }
     },
     async getIndexCell(req,res){
@@ -157,7 +157,7 @@ module.exports = {
             });
 
         } catch (err) {
-            res.json("Falha ao tentar inserir dados no documento (Method: 'getIndexCell') . Detalhes: " + err);
+            res.json("Falha ao tentar ler dados do documento (Method: 'getIndexCell') . Detalhes: " + err);
         }
     },
 }

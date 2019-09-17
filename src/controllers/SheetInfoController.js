@@ -17,7 +17,7 @@ module.exports = {
                         "ColumnsCount":sheet.colCount });
             });
         } catch (err) {
-            res.json("Falha ao tentar inserir dados no documento (Method: 'getDocAllInfo') . Detalhes: " + err);
+            res.json("Falha ao tentar ler informações do documento (Method: 'getDocAllInfo') . Detalhes: " + err);
         }
     },
     async getModifyInfo(req,res){
@@ -27,7 +27,7 @@ module.exports = {
                 res.json({ "LastUpdate": info.updated, "AuthorName": info.author.name, "AuthorEmail": info.author.email });
             });
         } catch (err) {
-            res.json("Falha ao tentar inserir dados no documento (Method: 'getModifyInfo') . Detalhes: " + err);
+            res.json("Falha ao tentar ler informações no documento (Method: 'getModifyInfo') . Detalhes: " + err);
         }
     },
 }
