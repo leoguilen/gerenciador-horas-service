@@ -47,7 +47,7 @@ module.exports = {
                 if(cell.batchId == id_cell) {
                     try{
                         cell.value = time;
-                        sheet.bulkUpdateCells(cells);
+                        cell.save();
                         res.send("New value inserted with success");
                     } catch {
                         res.send("Has a problem in insert. Not inserted");
@@ -80,7 +80,7 @@ module.exports = {
                 if(cell.batchId == id_cell) {
                     try{
                         cell.value = obs;
-                        sheet.bulkUpdateCells(cells);
+                        cell.save();
                         res.send("New value inserted with success");
                     } catch {
                         res.send("Has a problem in insert. Not inserted");
