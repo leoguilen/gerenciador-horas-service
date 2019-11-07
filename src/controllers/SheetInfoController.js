@@ -10,21 +10,14 @@ module.exports = {
     async getDocAllInfo(req,res){
         try {
             await promisify(doc.useServiceAccountAuth)(credentials);
-            const info = await promisify(doc.getInfo)();
-            res.json(info);
-        } catch (err) {
-            res.json("Falha ao tentar inserir dados no documento (Method: 'getDocAllInfo') . Detalhes: " + err);
-        }
-    },
-    async getDimension(req,res){
-        try{
-            await promisify(doc.useServiceAccountAuth)(credentials);
             await promisify(doc.getInfo)((err,info) => {
                 sheet = info.worksheets[0];
-                res.json({ "RowsCount":sheet.rowCount, "ColumnsCount":sheet.colCount });
+                res.json({ "Title": info.title,
+                        "RowsCount":sheet.rowCount, 
+                        "ColumnsCount":sheet.colCount });
             });
         } catch (err) {
-            res.json("Falha ao tentar inserir dados no documento (Method: 'getDimension') . Detalhes: " + err);
+            res.json("Falha ao tentar ler informações do documento (Method: 'getDocAllInfo') . Detalhes: " + err);
         }
     },
     async getModifyInfo(req,res){
@@ -34,7 +27,7 @@ module.exports = {
                 res.json({ "LastUpdate": info.updated, "AuthorName": info.author.name, "AuthorEmail": info.author.email });
             });
         } catch (err) {
-            res.json("Falha ao tentar inserir dados no documento (Method: 'getModifyInfo') . Detalhes: " + err);
+            res.json("Falha ao tentar ler informações no documento (Method: 'getModifyInfo') . Detalhes: " + err);
         }
     },
 }
