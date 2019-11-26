@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+
+# SERVICE
+  manager-service:
+    build: .
+    container_name: "manager-service"
+    command: npm run dev
+    ports:
+      - "15520:15520"
+    volumes: 
+      - .:/usr/app
+
+  # # PORTAINER
+  portainer:
+     image: portainer/portainer
+     ports:
+       - "9000:9000"
+     container_name: "portainer-app"
