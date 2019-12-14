@@ -5,8 +5,7 @@
   "main": "server.js",
   "scripts": {
     "dev": "nodemon server.js",
-    "sonar-controllers": "node sonar-analisys/controllers.js",
-    "sonar-routes": "node sonar-analisys/routes.js"
+    "sonar": "node sonar-analisys.js"
   },
   "keywords": [],
   "author": "",
