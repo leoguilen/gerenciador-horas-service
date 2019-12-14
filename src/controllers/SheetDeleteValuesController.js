@@ -20,7 +20,7 @@ module.exports = {
                         cell.value = "";
                         cell.save();
                         res.send("Deleted with success");
-                    } catch {
+                    } catch (err){
                         res.send("Has a problem in delete. Not deleted");
                     }
                 } 

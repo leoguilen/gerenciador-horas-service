@@ -48,8 +48,9 @@ module.exports = {
                     try{
                         cell.value = time;
                         cell.save();
-                        res.send("New value inserted with success");
-                    } catch {
+                        res.json({"message":"New value inserted with success",
+                                "date":date,"why":why,"time":time,"who":who});
+                    } catch (err) {
                         res.send("Has a problem in insert. Not inserted");
                     }
                 } 
@@ -82,7 +83,7 @@ module.exports = {
                         cell.value = obs;
                         cell.save();
                         res.send("New value inserted with success");
-                    } catch {
+                    } catch (err){
                         res.send("Has a problem in insert. Not inserted");
                     }
                 } 
