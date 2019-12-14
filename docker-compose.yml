@@ -11,10 +11,65 @@ services:
       - "15520:15520"
     volumes: 
       - .:/usr/app
+  
+  # PGAMIN
+  pgadmin:
+    image: 'dpage/pgadmin4'
+    ports: 
+      - '15432:80'
+    environment: 
+      - PGADMIN_DEFAULT_EMAIL=leonardoguilen1@gmail.com
+      - PGADMIN_DEFAULT_PASSWORD=pgadmin123
+    networks:
+      - postgres-network
+  
+  # DB PostgreSQL
+  postgresql:
+    image: 'postgres'
+    ports:
+      - '5432:5432'
+    volumes:
+      - 'postgresql_data:/var/lib/postgres/data'
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+      - POSTGRES_PASSWORD=postgres123
+    networks: 
+      - postgres-network
+      
+  #Sonarqube
+  sonarqube:
+    image: sonarqube:latest
+    ports:
+      - '9000:9000'
+    environment:
+      - POSTGRESQL_HOST=postgresql
+      - POSTGRESQL_PORT=5432
+      - POSTGRESQL_ROOT_USER=postgres
+      - POSTGRESQL_ROOT_PASSWORD=postgres123
+      - POSTGRESQL_CLIENT_CREATE_DATABASE_NAME=sonarqube
+      - POSTGRESQL_CLIENT_CREATE_DATABASE_USERNAME=sonar
+      - POSTGRESQL_CLIENT_CREATE_DATABASE_PASSWORD=sonar
+      - SONARQUBE_DATABASE_NAME=sonarqube
+      - SONARQUBE_DATABASE_USER=sonar
+      - SONARQUBE_DATABASE_PASSWORD=sonar
+    volumes:
+      - sonarqube_data:/var/lib/sonarqube/data
+    depends_on: 
+      - postgresql
 
-  # # PORTAINER
+  # PORTAINER
   portainer:
-     image: portainer/portainer
-     ports:
-       - "9000:9000"
-     container_name: "portainer-app"
+    image: portainer/portainer
+    ports:
+      - "9001:9001"
+    container_name: "portainer-app"
+  
+volumes:
+  sonarqube_data:
+    driver: local
+  postgresql_data:
+    driver: local
+
+networks: 
+  postgres-network:
+    driver: bridge
