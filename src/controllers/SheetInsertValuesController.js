@@ -9,14 +9,14 @@ const doc = new GoogleSpreadsheet(process.env.SPREADSHEET_ID);
 module.exports = {
     async sendInfos(req,res){
         try {
-            const index_eventos = {entrada: 3, saida_almoco: 4, entrada_almoco: 5, saida: 6};
+            const index_eventos = { entrada: 3, saida_almoco: 4, entrada_almoco: 5, saida: 6 };
 
             await promisify(doc.useServiceAccountAuth)(credentials);
             const info = await promisify(doc.getInfo)();
             const sheet = info.worksheets[0];
             const cells = await promisify(sheet.getCells)({"return-empty": true});
 
-            const {date,why,time,who} = req.body;
+            const { date,why,time,who } = req.body;
             var id_cell = "";
 
             cells.forEach(cell => {

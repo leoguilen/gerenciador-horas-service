@@ -18,7 +18,7 @@ module.exports = {
                 if(cell.batchId == req.params.id) {
                     try{
                         cell.value = "";
-                        sheet.bulkUpdateCells(cells);
+                        cell.save();
                         res.send("Deleted with success");
                     } catch {
                         res.send("Has a problem in delete. Not deleted");
