@@ -14,10 +14,10 @@ docker-compose up -d
 Or running with npm
 
 ```npm
-npm run dev
+npm run start
 ```
 
-## Test Running Service
+## Test Service
 
 Enter in your browser with this url below
 
