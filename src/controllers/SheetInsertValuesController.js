@@ -9,7 +9,6 @@ const doc = new GoogleSpreadsheet(process.env.SPREADSHEET_ID);
 module.exports = {
     async sendInfos(req,res){
         try {
-            const index_eventos = { entrada: 3, saida_almoco: 4, entrada_almoco: 5, saida: 6 };
             var getEventId = require('../../src/utils.js');
 
             await promisify(doc.useServiceAccountAuth)(credentials);

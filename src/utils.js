@@ -1,7 +1,7 @@
 module.exports = (id_cell,event) => {
     const index_eventos = { entrada: 3, saida_almoco: 4, entrada_almoco: 5, saida: 6 };
     
-    switch (id_cell,event) {
+    switch (event) {
         case "entrada": {
             id_cell = id_cell.replace("C2", "C" + index_eventos.entrada);
         } 
