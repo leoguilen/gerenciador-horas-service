@@ -14,7 +14,7 @@ docker-compose up -d
 Or running with npm
 
 ```npm
-npm run dev
+npm run start
 ```
 
 ## Test Running Service
