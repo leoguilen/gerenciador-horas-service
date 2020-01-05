@@ -10,7 +10,7 @@ describe("Endpoints", () => {
 
     describe("Routes", () => {
         
-        describe("GET Routes", () => {
+        describe("Spreadsheet Info Routes", () => {
             it("should return spreadsheet info", async done => {
                 const res = await request.get('/api/spreadsheet/info')
     
@@ -30,9 +30,35 @@ describe("Endpoints", () => {
                 expect(res.body).toHaveProperty("AuthorName")
                 expect(res.body).toHaveProperty("AuthorEmail")
     
-                done();
+                done()
             })
         })
+
+        describe("Spreadsheet Cell Infos", () => {
+            it("should return spreadsheet cell info", async done => {
+                const validCellId = 25
+                const res = await request.get('/api/spreadsheet/data/infoCell/' + validCellId)
+    
+                expect(res.status).toBe(200)
+                expect(res.body).toHaveProperty("row")
+                expect(res.body).toHaveProperty("column")
+                expect(res.body).toHaveProperty("value")
+                expect(res.body).toHaveProperty("id")
+    
+                done()
+            }) 
+
+            it("should return spreadsheet cell info", async done => {
+                const invalidCellId = 800
+                const res = await request.get('/api/spreadsheet/data/infoCell/' + invalidCellId)
+    
+                expect(res.notFound).toBeTruthy()
+                expect(res.text).toBe("Not Found")
+                
+                done()
+            })
+        })    
+
 
         describe('POST Routes', () => {
             // Rotas que utilizam o metodo POST

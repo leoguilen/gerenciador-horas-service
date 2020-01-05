@@ -2,7 +2,7 @@
 // entrada: 3, saida_almoco: 4, entrada_almoco: 5, saida: 6
 
 describe('Events', () => {
-    var getBatchID = require('../../src/utils.js');
+    const { getBatchID } = require('../../src/utils.js');
     const initialBatchID = "RXC2"; // X == Número da linha
 
     it('Return cell BatchID valid for event type = Entrance', () => {
