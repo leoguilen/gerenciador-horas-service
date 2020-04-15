@@ -2,6 +2,7 @@ const GoogleSpreadsheet = require('google-spreadsheet');
 const path = require('path');
 const credentials = require(path.resolve('credentials.json'));
 const { promisify } = require('util');
+const { validateCellId } = require('../utils')
 require('dotenv/config');
 
 const doc = new GoogleSpreadsheet(process.env.SPREADSHEET_ID);
@@ -17,8 +18,13 @@ module.exports = {
                 "max-row": sheet.rowCount,
                 "return-empty": true
             }, (err,cells) => {
-                var cell = cells[req.params.id];
-                res.json({ "row": cell.row,"column": cell.col,"value": cell.value, "id": cell.batchId });
+                var cellId = req.params.id
+                if(validateCellId(sheet.rowCount,sheet.colCount,cellId)) {
+                    var cell = cells[cellId];
+                    res.json({ "row": cell.row,"column": cell.col,"value": cell.value, "id": cell.batchId });
+                } else {
+                    res.sendStatus(404)
+                }
             });
         } catch (err) {
             res.json("Falha ao tentar ler dados do documento (Method: 'getCell') . Detalhes: " + err);

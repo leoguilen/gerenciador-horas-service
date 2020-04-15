@@ -7,7 +7,7 @@ const SheetInsertValuesController = require('./controllers/SheetInsertValuesCont
 const SheetDeleteValuesController = require('./controllers/SheetDeleteValuesController');
 
 // Check Service Disponibitily
-routes.get('/checkService', (req,res) => res.sendStatus(res.statusCode));
+routes.get('/checkService', (req,res) => res.json({"serviceStatus":res.statusCode}));
 
 // Spreadsheet getting infos
 routes.get('/spreadsheet/info', SheetInfoController.getDocAllInfo);
