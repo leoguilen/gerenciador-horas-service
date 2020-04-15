@@ -6,7 +6,7 @@ services:
   manager-service:
     build: .
     container_name: "manager-service"
-    command: npm run dev
+    command: npm run start
     ports:
       - "15520:15520"
     volumes: 

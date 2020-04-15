@@ -11,3 +11,5 @@ app.use(express.json());
 app.use('/api', require('./src/routes'));
 
 app.listen(_port,_ip, () => console.log("Server is running..."));
+
+module.exports = app;

@@ -9,7 +9,7 @@ const doc = new GoogleSpreadsheet(process.env.SPREADSHEET_ID);
 module.exports = {
     async sendInfos(req,res){
         try {
-            const index_eventos = { entrada: 3, saida_almoco: 4, entrada_almoco: 5, saida: 6 };
+            var getEventId = require('../../src/utils.js');
 
             await promisify(doc.useServiceAccountAuth)(credentials);
             const info = await promisify(doc.getInfo)();
@@ -23,29 +23,15 @@ module.exports = {
                 if(cell.value == date)
                     id_cell = cell.batchId;
             });            
+            
+            id_cell = getEventId(id_cell,why);
 
-            switch (why) {
-                case "entrada": {
-                    id_cell = id_cell.replace("C2", "C" + index_eventos.entrada);
-                } 
-                    break;
-                case "saida_almoco": {
-                    id_cell = id_cell.replace("C2", "C" + index_eventos.saida_almoco);
-                } 
-                    break;
-                case "entrada_almoco": {
-                    id_cell = id_cell.replace("C2", "C" + index_eventos.entrada_almoco);
-                } 
-                    break;
-                case "saida": {
-                    id_cell = id_cell.replace("C2", "C" + index_eventos.saida);
-                } 
-                    break;
-            }
+            if(id_cell === 'Event not valid')
+                throw new exception("Tipo de evento inválido");
 
             cells.forEach(cell => {
                 if(cell.batchId == id_cell) {
-                    try{
+                    try {
                         cell.value = time;
                         cell.save();
                         res.json({"message":"New value inserted with success",
