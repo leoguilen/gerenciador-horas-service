@@ -1,6 +1,6 @@
 const GoogleSpreadsheet = require("google-spreadsheet");
 const path = require("path");
-const credentials = require(path.resolve("credentials.json"));
+const credentials = require(path.resolve('src', 'config', 'credentials.json'));
 const { promisify } = require("util");
 require("dotenv/config");
 
@@ -48,7 +48,7 @@ module.exports = {
     } catch (err) {
       res.json(
         "Falha no metodo de inserção de dados no documento (Method: 'sendInfos') . Detalhes: " +
-          err
+        err
       );
     }
   },
@@ -82,7 +82,7 @@ module.exports = {
     } catch (err) {
       res.json(
         "Falha no metodo de inserção de observação no documento (Method: 'sendObs') . Detalhes: " +
-          err
+        err
       );
     }
   },
